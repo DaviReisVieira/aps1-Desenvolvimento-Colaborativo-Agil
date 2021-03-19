@@ -23,7 +23,7 @@ public class Carrinho {
 				this.pedidos.get(i).incrementaQuantidade();			
 			}
 			else {
-				Pedido novoPedido = new Pedido ();
+				Pedido novoPedido = new Pedido(novoProduto);
 				this.pedidos.add(novoPedido);
 			}
 		}
