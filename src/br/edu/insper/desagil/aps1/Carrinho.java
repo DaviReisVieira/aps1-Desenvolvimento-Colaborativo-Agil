@@ -8,14 +8,14 @@ public class Carrinho {
 
 	public Carrinho() {
 		super();
-		pedidos = new ArrayList<>();
+		this.pedidos = new ArrayList<>();
 	}
 
 	public List<Pedido> getPedidos() {
-		return pedidos;
+		return this.pedidos;
 	}
 	
-	public List<Pedido> AdicionaProduto (Produto novoProduto) {
+	public void adicionaProduto (Produto novoProduto) {
 		for (int i=0; i< this.pedidos.size(); i++) {
 			Produto produtoCarrinho = this.pedidos.get(i).getProduto();
 			
@@ -28,7 +28,6 @@ public class Carrinho {
 			}
 		}
 		
-		return pedidos; // retorno a Lista de pedidos ou nada? (void)
 	}
 
 }

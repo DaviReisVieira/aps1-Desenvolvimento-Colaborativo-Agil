@@ -4,32 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Caixa {
-	private Map<Integer, Double> descontos;
+	private Map<Integer, Integer> descontos;
 
 	public Caixa() {
 		super();
-		descontos = new HashMap<Integer, Double>();
+		this.descontos = new HashMap<Integer, Integer>();
 	}
 	
-	public Map<Integer, Double> adicionaDesconto(Produto produto, int desconto) {
+	public void adicionaDesconto(Produto produto, int desconto) {
 		if (desconto > 0 && desconto < 100) {
-			descontos.put(produto.getCodigo(), (double) desconto/100);
+			this.descontos.put(produto.getCodigo(), desconto);
 		}
-		
-		return descontos;
 	}
 	
 	public double totalCarrinho (Carrinho carrinho) {
 		double total = 0.0;
 		for (Pedido pedido : carrinho.getPedidos()) {
 			if (this.descontos.containsKey(pedido.getProduto().getCodigo())) {
-				total += pedido.totalPedido()*(1 - descontos.get(pedido.getProduto().getCodigo()));
+				total += pedido.totalPedido()*(1 - (double) this.descontos.get(pedido.getProduto().getCodigo())/100);
 			}
 			else {
 				total +=  pedido.totalPedido();
 			}
 		}
-		
 		
 		return total;
 				
