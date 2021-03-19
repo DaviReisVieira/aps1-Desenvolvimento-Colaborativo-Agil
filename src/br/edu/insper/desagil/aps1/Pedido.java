@@ -18,7 +18,6 @@ public class Pedido {
 		return quantidade;
 	}
 	
-	
 	public void increaseQuantidade() {
 		this.quantidade += 1;
 	}

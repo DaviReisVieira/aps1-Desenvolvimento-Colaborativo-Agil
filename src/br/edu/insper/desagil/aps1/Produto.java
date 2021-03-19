@@ -4,7 +4,7 @@ public class Produto {
 	private int codigo;
 	private String nome;
 	private double preco;
-	
+
 	public Produto(int codigo, String nome, double preco) {
 		super();
 		this.codigo = codigo;
