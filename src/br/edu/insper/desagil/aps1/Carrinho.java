@@ -20,13 +20,12 @@ public class Carrinho {
 			Produto produtoCarrinho = this.pedidos.get(i).getProduto();
 			
 			if (produtoCarrinho.getCodigo() == novoProduto.getCodigo()) {
-				this.pedidos.get(i).incrementaQuantidade();			
-			}
-			else {
-				Pedido novoPedido = new Pedido(novoProduto);
-				this.pedidos.add(novoPedido);
+				this.pedidos.get(i).incrementaQuantidade();	
+				return;
 			}
 		}
+		Pedido novoPedido = new Pedido(novoProduto);
+		this.pedidos.add(novoPedido);
 		
 	}
 
