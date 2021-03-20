@@ -1,20 +1,62 @@
 package br.edu.insper.desagil.aps1;
 
 public class Testador {
-	
-	private double valorTotal;
-	private double valorEsperado;
+	private static double DELTA = 0.000001;
 	
 	public boolean testeA() { // Nenhum produto.
-	    return false;
+		Carrinho carrinhoTesteA = new Carrinho();
+		
+		Caixa caixaTesteA = new Caixa();
+		
+		double totalCompraA = caixaTesteA.totalCarrinho(carrinhoTesteA);
+		double totalEsperadoCompraA = 0.0;
+		
+		if (Math.abs(totalCompraA - totalEsperadoCompraA) < DELTA) {
+			return true;
+		}
+		else {
+			return false;
+		}	
 	}
 
 	public boolean testeB() { // Uma unidade de um produto sem desconto.
-	    return false;
+		Carrinho carrinhoTesteB = new Carrinho();		
+		
+		Produto produto1TesteB = new Produto(2001, "Itaipavo", 12.99);
+		carrinhoTesteB.adicionaProduto(produto1TesteB);
+		
+		Caixa caixaTesteB = new Caixa();
+		
+		double totalCompraB = caixaTesteB.totalCarrinho(carrinhoTesteB);
+		double totalEsperadoCompraB = 1*12.99;
+		
+		if (Math.abs(totalCompraB - totalEsperadoCompraB) < DELTA) {
+			return true;
+		}
+		else {
+			return false;			
+		}
 	}
 
 	public boolean testeC() { // Uma unidade de um produto com desconto.
-	    return false;
+		Carrinho carrinhoTesteC = new Carrinho();		
+		
+		Produto produto1TesteC = new Produto(2001, "Itaipavo", 12.99);
+		carrinhoTesteC.adicionaProduto(produto1TesteC);
+		
+		Caixa caixaTesteC = new Caixa();
+		
+		caixaTesteC.adicionaDesconto(produto1TesteC, 10);
+		
+		double totalCompraC = caixaTesteC.totalCarrinho(carrinhoTesteC);
+		double totalEsperadoCompraC = 1*12.99*(1-0.1);
+		
+		if (Math.abs(totalCompraC - totalEsperadoCompraC) < DELTA) {
+			return true;
+		}
+		else {
+			return false;			
+		}
 	}
 
 	public boolean testeD() { // Uma unidade de um produto com desconto e duas de um produto sem desconto.
@@ -31,9 +73,16 @@ public class Testador {
 		
 		caixaTesteD.adicionaDesconto(produto1TesteD, 40);
 		
-		valorTotal = caixaTesteD.totalCarrinho(carrinhoTesteD);
-		valorEsperado = 12.99*(1-0.4) + 2*15.95;
-		return valorEsperado == valorTotal;
+		double totalCompraD= caixaTesteD.totalCarrinho(carrinhoTesteD);
+		double totalEsperadoCompraD= 12.99*(1-0.4) + 2*15.95;
+		
+		if (Math.abs(totalCompraD - totalEsperadoCompraD) < DELTA) {
+			return true;
+		}
+		else {
+			return false;			
+		}
+		
 	}
 
 	public boolean testeE() { // Duas unidades de um produto com desconto e uma de um produto sem desconto.
@@ -50,8 +99,14 @@ public class Testador {
 		
 		caixaTesteE.adicionaDesconto(produto1TesteE, 15);
 		
-		valorTotal = caixaTesteE.totalCarrinho(carrinhoTesteE);
-		valorEsperado = 2*52.20*(1-0.15) + 21.40;
-		return valorEsperado == valorTotal;
+		double totalCompraE = caixaTesteE.totalCarrinho(carrinhoTesteE);
+		double totalEsperadoCompraE = 2*52.20*(1-0.15) + 21.40;
+		
+		if (Math.abs(totalCompraE - totalEsperadoCompraE) < DELTA) {
+			return true;
+		}
+		else {
+			return false;			
+		}
 	}
 }
